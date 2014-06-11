@@ -1,12 +1,10 @@
 class TweetsController < ApplicationController
-  before_action :set_zombie, only: [:show, :edit, :update, :destroy]
-
-  # GET /zombies
-  # GET /zombies.json
-  def index
-    @zombies = Zombie.includes(:brain).all
+  before_filter :get_zombie
+  
+  def get_zombie
+    @zombie = Zombie.find(params[':zombie_id'])
   end
-
+  
   # GET /zombies/1
   # GET /zombies/1.json
   def show
